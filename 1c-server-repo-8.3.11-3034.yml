@@ -1,0 +1,22 @@
+version: '3'
+services:
+  1c-server-repo-8.3.11-3034:
+    image: xelon/1c-server-repo:8.3.11-3034
+    build:
+      context: .
+      args:
+         - SRV1CV8_VERSION=8.3.11-3034
+         - SRV1CREPO_PORT=1562
+    container_name: 1c-server-repo-8.3.11-3034
+    restart:
+      always
+    network_mode: "host"
+    volumes:
+      - 1c-server-repos:/opt/1C/repository
+      - /usr/local/mydebs:/usr/local/mydebs:ro
+      - /etc/localtime:/etc/localtime:ro
+
+volumes:
+  1c-server-repos:
+    external:
+      name: 1c-server-repos
